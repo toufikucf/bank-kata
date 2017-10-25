@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="bankModule">
+<head>
+
+<meta charset="UTF-8">
+<title>bank web app</title>
+<script src="/resources/js/angular.min.js"></script>
+<script src="/resources/js/ng-modules/bankModule.js"></script>
+<link href="/resources/css/main.css" rel="stylesheet">
+
+</head>
+<body ng-controller="bankCtrl" ng-init="getAccounts()">
+
+	<div style="width: 100%; text-align: center">
+		<h1>Welcome to {{title}}</h1>
+		<h4>Please select an account for details</h4>
+		<div class="thirtyPercent inlineBlock">
+			<label>Account: </label> <select ng-model="selectedAccountId"
+				ng-change="retrieveTransactions()">
+				<option ng-repeat="acc in accounts" value="{{acc.accountId}}">{{acc.accountId}}</option>
+			</select>
+		</div>
+		<div class="thirtyPercent inlineBlock" ng-if="selectedAccount!=null">
+			<p style="font-weight: bold;">
+				Balance: <span style="color: #82FA58;">{{selectedAccount.balance}}</span>
+			</p>
+		</div>
+
+
+	</div>
+	<div ng-if="selectedAccount!=null">
+		<div style="clear: both; text-align: center; margin-top: 40px"
+			ng-if="transactions.length>0">
+			<table style="width: 90%">
+				<tr>
+					<th>Transaction date</th>
+					<th>Amount</th>
+					<th>Balance</th>
+					<th>Transaction type</th>
+				</tr>
+				<tr ng-repeat="tx in transactions">
+					<td>{{tx.transactionDate}}</td>
+					<td>{{tx.amount}}</td>
+					<td>{{tx.accountBalance}}</td>
+					<td>{{tx.transactionType}}</td>
+				</tr>
+			</table>
+		</div>
+		<div style="clear: both; text-align: center; margin-top: 40px"
+			ng-if="transactions.length==0">
+			<p style="font-weight: bolder;">No transactions to display</p>
+		</div>
+
+		<div
+			style="width: 100%; text-align: center; clear: both; margin-top: 40px">
+			<h4>Transfert ammount</h4>
+			<div class="thirtyPercent inlineBlock">
+				<label>From account: </label> <select ng-model="transfertData.selectedAccountFrom">
+					<option ng-repeat="acc in accounts" value="{{acc.accountId}}">{{acc.accountId}}</option>
+				</select>
+			</div>
+			<div class="thirtyPercent inlineBlock">
+				<label>To account: </label> <select ng-model="transfertData.selectedAccountTo">
+					<option ng-repeat="acc in accounts" value="{{acc.accountId}}">{{acc.accountId}}</option>
+				</select>
+			</div>
+			<div class="thirtyPercent inlineBlock">
+				<label>Amount: </label> <input ng-model="transfertData.amountToTransfert" />
+			</div>
+			<div style="margin-top: 30px">
+				<input type="button" value="Transfert amount" ng-click="transfert()" />
+			</div>
+		</div>
+		<div
+			style="width: 100%; text-align: center; clear: both; margin-top: 40px">
+			<h4>Deposit / Withdraw</h4>
+			<label>Account: </label> <select ng-model="depositData.selectedAccountDw">
+				<option ng-repeat="acc in accounts" value="{{acc.accountId}}">{{acc.accountId}}</option>
+			</select>
+			<div class="thirtyPercent inlineBlock">
+				<label>Amount: </label> <input ng-model="depositData.amountToDw" />
+			</div>
+			<div class="thirtyPercent inlineBlock">
+				<ul class="nlt">
+				
+					<li><input type="button" value="Deposit amount"
+						ng-click="deposit()" /></li>
+						
+					<li style="margin-top: 10px"><input type="button"
+						value="Withdraw amount" ng-click="withdraw()" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

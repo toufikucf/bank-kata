@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+	<CLIENT clientid="clientid_1" name="client1" pwd="pwd1" />
+	<CLIENT clientid="clientid_2" name="client2" pwd="pwd2" />
+	<CLIENT clientid="clientid_3" name="client3" pwd="pwd3" />
+</dataset>
