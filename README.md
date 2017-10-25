@@ -1,5 +1,5 @@
 # bank-kata
-A simple project integrating spring-jpa, QueryDsl, Spring-test, Spring-test-dbunit
+A simple spring java config project integrating spring-jpa, QueryDsl, Spring-test, Spring-test-dbunit
 
 In order to run this project: 
    - Checkout this repository 
